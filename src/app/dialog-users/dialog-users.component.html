@@ -1,0 +1,49 @@
+<h2 mat-dialog-title>User Form</h2>
+<div mat-dialog-content>
+<form [formGroup]="this.userForm" style="overflow-x:auto;">
+
+  <mat-form-field appearance="outline">
+    <mat-label>Username</mat-label>
+    <input [readonly]="actionBtn == 'Update'" formControlName="userName" matInput placeholder="Ex. User123">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input formControlName="password" type="password" matInput placeholder="Ex. @M3aer1123">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input formControlName="name" matInput placeholder="Ex. Alexandre Vladiu">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input formControlName="email" type="email" matInput placeholder="Ex. pat@example.com">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+  
+  <mat-form-field appearance="outline">
+    <mat-label>Phone</mat-label>
+    <input formControlName="phone" type="text" matInput placeholder="Ex. 07482371232">
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Administator</mat-label>
+    <mat-select formControlName="isAdmin" placeholder="Administrator">
+         <mat-option value="true">True</mat-option>
+         <mat-option value="false">False</mat-option>
+    </mat-select>
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+</form>
+  
+</div>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="addUser()">{{actionBtn}}</button>
+</mat-dialog-actions>

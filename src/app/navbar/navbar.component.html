@@ -1,0 +1,51 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="/">Detailing Garage</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li *ngIf="IsLoggedIn && IsAdmin" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Administrator 
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" routerLink="/users"> <mat-icon></mat-icon> Users</a>
+            <a class="dropdown-item" routerLink="/reviews"><mat-icon></mat-icon> Reviews</a>
+            <a class="dropdown-item" routerLink="/commands"> <mat-icon></mat-icon> Appointments</a>
+            <a class="dropdown-item" routerLink="/pictures"> <mat-icon></mat-icon> Pictures</a>
+          </div>
+        </li>
+
+        <li *ngIf="IsLoggedIn" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            My Account
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" routerLink="/profile"> <mat-icon> </mat-icon> Profile</a>
+            <a class="dropdown-item" routerLink="/mycommands"><mat-icon> </mat-icon> My Appointments</a>
+            <a class="dropdown-item" routerLink="/myreviews"><mat-icon> </mat-icon> My Reviews</a>
+          </div>
+        </li>
+
+        <li class="nav-item" *ngIf="!IsLoggedIn" >
+          <a class="nav-link" (click)="LogIn()">Login</a>
+        </li>
+        
+        <li class="nav-item" *ngIf="!IsLoggedIn" >
+          <a class="nav-link" (click)="Register()">Register</a>
+        </li>
+
+        <li class="nav-item" *ngIf="IsLoggedIn" >
+          <a class="nav-link" (click)="Logout()" routerLink="/register">Logout</a>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+
+
+
+
+
+

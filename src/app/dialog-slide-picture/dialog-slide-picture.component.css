@@ -1,0 +1,12 @@
+.size{
+    max-width: 1000px;
+    max-height: 700px;
+    overflow-x:auto;
+    width: 100%;
+    height: auto;
+}
+
+.center {
+    border: 1px solid #ffffff;
+    text-align: center;
+    }
