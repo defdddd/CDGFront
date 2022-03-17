@@ -1,3 +1,109 @@
+        <mat-toolbar class="mat-elevation-z8">
+            <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+                <mat-icon *ngIf="!sidenav.opened">
+                    menu
+                </mat-icon>
+                <mat-icon *ngIf="sidenav.opened">
+                    close
+                </mat-icon>
+            </button>
+            <strong>
+                <a (click)="onSelect()" routerLink="/">
+                    <img style="height: 230px; margin-bottom: 10px;" src="assets/images/log2.png">
+                </a>
+            </strong>
+        </mat-toolbar>
+   
+    <mat-sidenav-container>        
+        <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+            <div *ngIf="IsLoggedIn">
+                <img class="avatar mat-elevation-z8" [src]="this.ImagePath"/>
+                <h4 class="name">{{Name}}</h4>
+                <mat-divider></mat-divider>
+            </div>
+            <div *ngIf="IsLoggedIn">
+                <mat-list role="list">
+                    <mat-list-item role="listitem">
+                        <button mat-button class="button-color" (click)="onSelect()" routerLink="/profile">
+                            <mat-icon>person_pin</mat-icon>
+                            <span class="button-text">Profile</span>
+                        </button>   
+                    </mat-list-item>
+                    <mat-list-item role="listitem">                
+                        <button  mat-button class="button-color" (click)="onSelect()"  routerLink="/mycommands">
+                            <mat-icon>list</mat-icon>
+                            <span class="name" class="button-text">My Appointments</span>
+                        </button>   
+                    </mat-list-item>    
+                    <mat-list-item role="listitem">                
+                        <button mat-button class="button-color"(click)="onSelect()"  routerLink="/myreviews">
+                            <mat-icon>rate_review</mat-icon> 
+                            <span class="button-text">My Reviews</span>
+                        </button>   
+                    </mat-list-item>   
+                </mat-list>
+                <mat-divider></mat-divider>
+            </div>
+            <div *ngIf="IsLoggedIn && IsAdmin">
+                <mat-list role="list1">
+                    <mat-list-item role="list1item">
+                        <button mat-button class="button-color" (click)="onSelect()"  routerLink="/users">
+                            <mat-icon>people</mat-icon>
+                            <span class="button-text">Users</span>
+                        </button>   
+                    </mat-list-item>
+                    <mat-list-item role="list1item">                
+                        <button mat-button class="button-color" (click)="onSelect()"  routerLink="/reviews">
+                            <mat-icon>rate_review</mat-icon> 
+                            <span class="button-text">Reviews</span> 
+                        </button>   
+                    </mat-list-item>
+                    <mat-list-item role="list1item">                
+                        <button mat-button class="button-color" (click)="onSelect()"  routerLink="/commands">
+                            <mat-icon>list</mat-icon> 
+                            <span class="button-text">Appointments</span> 
+                        </button>   
+                    </mat-list-item>  
+                    <mat-list-item role="list1item">                
+                        <button mat-button class="button-color" (click)="onSelect()" routerLink="/pictures">
+                            <mat-icon>photo</mat-icon>
+                            <span class="button-text">Pictures</span>
+                        </button>   
+                    </mat-list-item>  
+                </mat-list>
+                <mat-divider></mat-divider>
+            </div>
+            <mat-list >
+                <mat-list-item  *ngIf="!IsLoggedIn">
+                <button mat-button class="button-color" (click)="LogIn()">
+                    <mat-icon>person</mat-icon>
+                    <span class="button-text">Login</span>
+                </button>
+                </mat-list-item>
+                <mat-list-item *ngIf="!IsLoggedIn" >
+                <button mat-button class="button-color" (click)="Register()">
+                    <mat-icon>add</mat-icon>
+                    <span class="button-text">Register</span>
+                </button>
+                </mat-list-item>
+                <mat-list-item *ngIf="IsLoggedIn">
+                <button mat-button class="button-color"  (click)="Logout()">
+                    <mat-icon>exit_to_app</mat-icon>
+                    <span class="button-text">Logout</span>
+                </button>
+                </mat-list-item>
+            </mat-list>
+        </mat-sidenav>
+            <mat-sidenav-content (click)="tirggerSlider()">
+                <div class="content mat-elevation-z8">
+                    <router-outlet></router-outlet>
+                </div>        
+            </mat-sidenav-content>
+    </mat-sidenav-container>
+    <footer>
+        <div class="container text-center ">
+            <p>Copyright © Brand 2022</p>
+        </div>
+    </footer>
 
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+ 

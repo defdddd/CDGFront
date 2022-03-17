@@ -6,7 +6,6 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { HomeComponent } from './home/home.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
@@ -38,9 +37,13 @@ import { DialogPictureComponent } from './dialog-picture/dialog-picture.componen
 import { PictureComponent } from './picture/picture.component';
 import { DialogSlidePictureComponent } from './dialog-slide-picture/dialog-slide-picture.component';
 import { NgImageSliderModule } from 'ng-image-slider';
-
-
-
+import { DialogAddReviewComponent } from './dialog-add-review/dialog-add-review.component';
+import { NgxMaterialRatingModule } from "ngx-material-rating";
+import {MatCardModule} from '@angular/material/card';
+import { DialogMakeAppointmentComponent } from './dialog-make-appointment/dialog-make-appointment.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatDividerModule } from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -50,7 +53,6 @@ import { NgImageSliderModule } from 'ng-image-slider';
     RegisterComponent,
     ProfileComponent,
     HomeComponent,
-    NavbarComponent,
     ForgotpasswordComponent,
     CommandsComponent,
     ReviewsComponent,
@@ -62,7 +64,9 @@ import { NgImageSliderModule } from 'ng-image-slider';
     DialogAppointmentComponent,
     DialogPictureComponent,
     PictureComponent,
-    DialogSlidePictureComponent
+    DialogSlidePictureComponent,
+    DialogAddReviewComponent,
+    DialogMakeAppointmentComponent
   ],
   imports: [
     BrowserModule,
@@ -81,11 +85,16 @@ import { NgImageSliderModule } from 'ng-image-slider';
     MatMenuModule,
     MatSidenavModule,
     MatFormFieldModule,
+    MatCardModule,
     MatInputModule,
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    NgImageSliderModule
+    NgImageSliderModule,
+    NgxMaterialRatingModule,
+    MatDividerModule,
+    NgbModule,
+    MatListModule
   ],
   providers: [
     {

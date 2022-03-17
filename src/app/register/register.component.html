@@ -28,6 +28,15 @@
   </mat-form-field>
 
   <mat-form-field appearance="outline">
+    <mat-label>Gender</mat-label>
+    <mat-select formControlName="gender" placeholder="Gender">
+      <mat-option value="male">Male</mat-option>
+      <mat-option value="female">Female</mat-option>
+   </mat-select>
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
     <mat-label>Password</mat-label>
     <input formControlName="password" matInput type="password"  class="fadeIn third"  placeholder="Ex. Mar43df@">
     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>

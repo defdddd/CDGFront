@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialo
 import { Router } from '@angular/router';
 import PersonModel from 'src/app/Models/PersonModel';
 import { PersonService } from 'src/app/Services/person.service';
+import { AuthService } from '../Services/auth.service';
 
 
 @Component({
@@ -16,11 +17,14 @@ export class DialogUsersComponent implements OnInit {
   userForm !: FormGroup;
   actionBtn : string = "Add";
   private id : number = 0;
+  isAdmin: boolean = false;
 
   constructor(private service: PersonService, private formbuilder: FormBuilder,
      private route: Router, private dialogRef: MatDialogRef<DialogUsersComponent>,
-     @Inject(MAT_DIALOG_DATA) private editData: PersonModel
-     ) { }
+     @Inject(MAT_DIALOG_DATA) private editData: PersonModel, auth : AuthService
+     ) { 
+       this.isAdmin = auth.IsAdmin();
+     }
 
   ngOnInit(): void {
     this.userForm = this.formbuilder.group({
@@ -28,6 +32,7 @@ export class DialogUsersComponent implements OnInit {
       password : ['', Validators.required],
       name : ['', Validators.required],
       email : ['', Validators.required],
+      gender : ['', Validators.required],
       phone : ['', Validators.required],
       isAdmin: ['', Validators.required]
     });
@@ -39,6 +44,7 @@ export class DialogUsersComponent implements OnInit {
       this.userForm.controls['password'].setValue(this.editData.password);
       this.userForm.controls['name'].setValue(this.editData.name);
       this.userForm.controls['email'].setValue(this.editData.email);
+      this.userForm.controls['gender'].setValue(this.editData.gender);
       this.userForm.controls['phone'].setValue(this.editData.phone);
       this.userForm.controls['isAdmin'].setValue(this.editData.isAdmin.toString());
     }
@@ -62,7 +68,7 @@ export class DialogUsersComponent implements OnInit {
       this.service.addUser(person).subscribe(data =>{
             if(data){
               this.userForm.reset();
-              this.dialogRef.close();
+              this.dialogRef.close(JSON.stringify(data));
             }
         });
     else
@@ -70,7 +76,7 @@ export class DialogUsersComponent implements OnInit {
       this.service.updateUser(person).subscribe(data =>{
         if(data){
           this.userForm.reset();
-          this.dialogRef.close();
+          this.dialogRef.close(JSON.stringify(data));
         }
       });
     }

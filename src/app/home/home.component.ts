@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgbCarousel, NgbCarouselConfig, NgbSlideEvent, NgbSlideEventSource } from '@ng-bootstrap/ng-bootstrap';
+import { NgImageSliderComponent } from 'ng-image-slider';
+import { SliderTrigger } from '../Helpers/SliderTrigger';
+import {PicturesService} from '../Services/pictures.service'
 
 @Component({
   selector: 'app-home',
@@ -6,10 +10,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  
+  imageObject: Array<object> = [];
+  @ViewChild('nav') slider !: NgImageSliderComponent;
 
-  constructor() { }
+  constructor(public pictureService : PicturesService, config: NgbCarouselConfig ) {
+
+}
 
   ngOnInit(): void {
+    this.pictureService.GetGaragePicture().subscribe( picutres =>
+      picutres.forEach(elem =>
+        this.imageObject.push({
+          image: JSON.parse(elem.image),
+          thumbImage: JSON.parse(elem.image)
+        })
+        )
+      );
+      }
+   
+  triggeroff(){
+    SliderTrigger.Trigger = false;
   }
-
+  
+  triggeron (){
+    SliderTrigger.Trigger = true;
+  }
 }

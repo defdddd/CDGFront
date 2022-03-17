@@ -1,10 +1,10 @@
 export default class ReviewModel{
-    id: number;
-    userId: number;
-    appointmentId: number;
-    grade: number;
-    review: string;
-    isOke: boolean;
+    id!: number;
+    userId!: number;
+    appointmentId!: number;
+    grade!: number;
+    review!: string;
+    isOke!: boolean;
 
   constructor(
     Id: number, 

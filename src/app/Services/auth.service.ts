@@ -52,6 +52,12 @@ export class AuthService {
     return token['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] == "Admin";
   }
 
+  GetId(): number{
+    if(this.GetToken() == "NULL") return -1;
+    var token = jwtDecode<Token>(this.GetToken());
+    return token.Identifier;
+  }
+
   LogOut(){
     localStorage.removeItem(this.AUTH);
     window.location.reload();

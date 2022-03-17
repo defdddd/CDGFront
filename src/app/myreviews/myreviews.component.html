@@ -1,5 +1,5 @@
 <div class="container" style="overflow-x:auto; margin-top: 5px;" >
-    <div style="margin-top: 10px;">
+    <div style="margin-top: 33px">
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8" >
           <!-- Position Column -->
@@ -7,13 +7,7 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by number" > No. </th>
             <td mat-cell *matCellDef="let element"> {{element.id}} </td>
           </ng-container>
-      
-          <!-- Name Column -->
-          <ng-container matColumnDef="userId">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by user"> User </th>
-            <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
-          </ng-container>
-      
+
           <!-- Weight Column -->
           <ng-container matColumnDef="appointmentId">
             <th mat-header-cell *matHeaderCellDef sortActionDescription="Sort by appointment" > Appointment </th>
@@ -29,28 +23,18 @@
           <!-- Symbol Column -->
           <ng-container matColumnDef="review">
             <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by review"> Review </th>
-            <td mat-cell *matCellDef="let element"> {{element.review}} </td>
-          </ng-container>
-
-          <!-- Symbol Column -->
-          <ng-container matColumnDef="isOke">
-            <th mat-header-cell *matHeaderCellDef> IsOke </th>
-            <td mat-cell *matCellDef="let element"> {{element.isOke}} </td>
+            <td mat-cell *matCellDef="let element" class="truncate-cell"> {{element.review}} </td>
           </ng-container>
 
           <ng-container matColumnDef="Action">
             <th mat-header-cell *matHeaderCellDef>
-            <Span>Action 
-              <button mat-icon-button  (click)="openDialog()" style="margin-left: 10px;"color="green">
-              Insert
-            </button> </Span>
-            
+            <Span>Action </Span>
             </th> 
             <td mat-cell *matCellDef="let element"> 
-              <button mat-icon-button (click)="editReview(element)" color="primary">
+              <button mat-icon-button  [title]="'edit review' | titlecase" (click)="editReview(element)" color="primary">
                 <mat-icon>edit</mat-icon>
               </button>
-              <button mat-icon-button (click)="deleteReview(element)" color="warn">
+              <button mat-icon-button   [title]="'delete review' | titlecase" (click)="deleteReview(element)" color="warn">
                 <mat-icon>delete</mat-icon>
               </button>
             </td>

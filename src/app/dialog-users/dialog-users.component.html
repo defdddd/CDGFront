@@ -33,6 +33,15 @@
   </mat-form-field>
 
   <mat-form-field appearance="outline">
+    <mat-label>Gender</mat-label>
+    <mat-select formControlName="gender" placeholder="Gender">
+      <mat-option value="male">Male</mat-option>
+      <mat-option value="female">Female</mat-option>
+   </mat-select>
+    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field *ngIf="isAdmin" appearance="outline">
     <mat-label>Administator</mat-label>
     <mat-select formControlName="isAdmin" placeholder="Administrator">
          <mat-option value="true">True</mat-option>
@@ -44,6 +53,6 @@
   
 </div>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button (click)="addUser()">{{actionBtn}}</button>
+  <button mat-button mat-dialog-close color="warn" >Cancel</button>
+  <button mat-button (click)="addUser()" color="primary">{{actionBtn}}</button>
 </mat-dialog-actions>

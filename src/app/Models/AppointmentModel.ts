@@ -2,7 +2,7 @@ export default class AppointmentModel{
     id: number;
     userName: string;
     type: string;
-    date: Date;
+    date: string;
     price: number;
     personId: number;
     isDone: boolean;
@@ -11,7 +11,7 @@ export default class AppointmentModel{
     Id: number, 
     UserName: string, 
     Type: string, 
-    Date: Date, 
+    Date: string, 
     Price: number, 
     PersonId: number, 
     IsDone: boolean

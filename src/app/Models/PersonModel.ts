@@ -3,6 +3,7 @@ export default class PersonModel{
     userName: string;
     password: string;
     name: string;
+    gender: string;
     email: string;
     phone: string;
     isAdmin: boolean;
@@ -12,6 +13,7 @@ export default class PersonModel{
     UserName: string, 
     Password: string, 
     Name: string, 
+    gender: string,
     Email: string, 
     Phone: string, 
     IsAdmin: boolean
@@ -20,6 +22,7 @@ export default class PersonModel{
     this.userName = UserName
     this.password = Password
     this.name = Name
+    this.gender = gender
     this.email = Email
     this.phone = Phone
     this.isAdmin = IsAdmin

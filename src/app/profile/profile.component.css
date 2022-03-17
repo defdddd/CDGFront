@@ -1,0 +1,60 @@
+.header-image {
+    background-size: cover;
+    height: 50px;
+    width: 55px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+
+.card {
+    margin-top: 2%;
+    max-width: 1180px;
+    min-width: 360px;
+}
+
+.main-div {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+input[type="file"] {
+    display: none;
+}
+.field-name {
+    color: rgb(168, 160, 149);
+}
+ .panel-footer {
+    border-top: 1px solid #eeeeee;
+    text-align: center;
+    padding: 0;
+    height: 30px;
+}
+p{
+    margin: 0 0 10px;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.field-value {
+    display: inline-block;
+    vertical-align: bottom;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 5px;
+}
+.custom-file-upload {
+  margin-left: 6px;
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+mat-form-field{
+    width: 100%;
+    overflow-x:auto;
+}

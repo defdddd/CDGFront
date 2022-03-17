@@ -8,6 +8,7 @@ import ReviewModel from 'src/app/Models/ReviewModel';
 import { AppointmentService } from 'src/app/Services/appointment.service';
 import { PersonService } from 'src/app/Services/person.service';
 import { ReviewService } from 'src/app/Services/review.service';
+import { AuthService } from '../Services/auth.service';
 
 
 @Component({
@@ -22,13 +23,15 @@ export class DialogReviewComponent implements OnInit {
   private id : number = 0;
   users !: PersonModel[];
   appointments !: AppointmentModel[];
+  Auth !: boolean;
 
   constructor(private personService: PersonService, private appointmentService: AppointmentService, private reviewService: ReviewService, private formbuilder: FormBuilder,
      private route: Router, private dialogRef: MatDialogRef<DialogReviewComponent>,
-     @Inject(MAT_DIALOG_DATA) private editData: ReviewModel
+     @Inject(MAT_DIALOG_DATA) private editData: ReviewModel, private auth : AuthService
      ) { 
        this.personService.GetUsers().subscribe(data => this.users = data);
        this.appointmentService.GetAppointments().subscribe(data => this.appointments = data);
+       this.Auth = auth.IsAdmin();
      }
 
   ngOnInit(): void {
@@ -58,12 +61,6 @@ export class DialogReviewComponent implements OnInit {
 
     var rev = this.reviewForm.value;
     rev.id = this.id;
-    console.log(test);
-
-    if(rev.isOke == "true") 
-    rev.isOke = true;
-    else
-    rev.isOke = false;
 
     if(this.actionBtn == "Add")
     

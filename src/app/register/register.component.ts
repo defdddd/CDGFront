@@ -22,6 +22,7 @@ export class RegisterComponent implements OnInit {
       email:['',[Validators.required]],
       phone:['',[Validators.required]],
       username:['',[Validators.required]],
+      gender:['',[Validators.required]],
       password:['',[Validators.required]],
       confirmpassword:['',[Validators.required]]
     });
@@ -41,11 +42,12 @@ export class RegisterComponent implements OnInit {
       const password = this.form.get("password")?.value;
       const confirmpassword = this.form.get("confirmpassword")?.value;
       const name = this.form.get("name")?.value;
+      const gender = this.form.get("gender")?.value;
       const email = this.form.get("email")?.value;
       const phone = this.form.get("phone")?.value;
 
       if(confirmpassword == password){
-        var person = new PersonModel(0,username,password,name,email,phone,false);  
+        var person = new PersonModel(0,username,password,name,gender,email,phone,false);  
         this.auth.Register(person).subscribe(data =>{
               if(data){
                 alert("Account created with succes");

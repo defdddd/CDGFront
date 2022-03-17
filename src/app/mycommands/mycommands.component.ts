@@ -5,6 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { DialogAddReviewComponent } from '../dialog-add-review/dialog-add-review.component';
 import { DialogAppointmentComponent } from '../dialog-appointment/dialog-appointment.component';
 import { DialogSlidePictureComponent } from '../dialog-slide-picture/dialog-slide-picture.component';
 import AppointmentModel from '../Models/AppointmentModel';
@@ -21,7 +22,7 @@ export class MycommandsComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   data !: AppointmentModel[];
-  Keys: string[] = Object.keys(new AppointmentModel(0,'0','0',new Date,0,0,false));
+  Keys: string[] = Object.keys(new AppointmentModel(0,'0','0',"",0,0,false));
   displayedColumns!: string[];
   dataSource !: MatTableDataSource<AppointmentModel>;
 
@@ -73,18 +74,25 @@ export class MycommandsComponent implements AfterViewInit {
     });
   }
 
-  private async setAppointments(){
-    (await this.appointmentService.myAppointment())
-        .subscribe((data: AppointmentModel[]) => {
+  private  setAppointments(){
+     this.appointmentService.GetCount().subscribe( number =>
+      this.appointmentService.myAppointment(number).subscribe(
+        (data: AppointmentModel[]) => {
           this.data = data; 
           this.dataSource = new MatTableDataSource(this.data);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
-        });
+        }));
   }
 
   viewPicture(element: AppointmentModel){
     this.dialog.open(DialogSlidePictureComponent, {
+      data: element
+    })
+  }
+
+  addReview(element: AppointmentModel){
+    this.dialog.open(DialogAddReviewComponent, {
       data: element
     })
   }

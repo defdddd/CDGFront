@@ -20,7 +20,7 @@ export class MyreviewsComponent implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   data !: ReviewModel[];
-  Keys: string[] = Object.keys(new ReviewModel(0,0,0,0,'0',false));
+  Keys: string[] = ['id','appointmentId','grade','review','Action'];
   displayedColumns!: string[];
   dataSource !: MatTableDataSource<ReviewModel>;
 
@@ -28,9 +28,8 @@ export class MyreviewsComponent implements AfterViewInit {
   constructor(private auth: AuthService,private route: Router,
               private dialog: MatDialog, private reviewService: ReviewService, private _liveAnnouncer: LiveAnnouncer) 
               {
-                this.Keys.push("Action");
                 this.displayedColumns = this.Keys;
-                if(!this.auth.LoggedIn() || !this.auth.IsAdmin())
+                if(!this.auth.LoggedIn())
                 this.route.navigate(['/']);
               }
 
@@ -58,8 +57,8 @@ export class MyreviewsComponent implements AfterViewInit {
   editReview(element: ReviewModel){
     this.dialog.open(DialogReviewComponent, {
       width:"auto",
-      data: element
-      
+      data: element   
+         
     }).afterClosed().subscribe(()=>
       {
        this.setReviews();

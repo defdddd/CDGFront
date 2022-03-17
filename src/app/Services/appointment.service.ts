@@ -23,12 +23,8 @@ export class AppointmentService {
  GetUsersPagination(pageNumber: number, pageSize: number){
    return this.http.get<AppointmentModel[]>(`https://localhost:44338/Appointment/${pageNumber}/${pageSize}`);
   }
- async GetCount(){
-     let nr = await this.http.get<number>(this.AppointmentCOUNT).toPromise();
-     if (typeof nr !== 'undefined')
-         return nr;
-
-     return 0;
+  GetCount(){
+     return this.http.get<number>(this.AppointmentCOUNT);
   }
 
   addAppointment(value: AppointmentModel){
@@ -39,14 +35,18 @@ export class AppointmentService {
     return this.http.put<AppointmentModel>(this.UPDATE_URL,value);
   }
 
-  async myAppointment(){
-    const nr = await this.GetCount();
+   myAppointment(nr: number){
     return this.http.get<AppointmentModel[]>(`https://localhost:44338/Appointment/MyApp/1/${nr}`);
   }
 
+   checkAppointmentDate(date : any){
+    return this.http.get<boolean>(`https://localhost:44338/Appointment/dateVal/` + date);
+  }
 
   deleteAppointment(id: number){
    return this.http.delete<any>(`https://localhost:44338/Appointment/${id}`);
   }
-
+  getCurrentDates(){
+    return this.http.get<string[]>('https://localhost:44338/Appointment/dates');
+  }
 }

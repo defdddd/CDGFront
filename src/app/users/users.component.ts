@@ -21,7 +21,7 @@ export class UsersComponent  implements AfterViewInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   data !: PersonModel[];
-  Keys: string[] = Object.keys(new PersonModel(0,'0','0','0','0','0',false));
+  Keys: string[] = Object.keys(new PersonModel(0,'0','0','0','0','0','0',false));
   displayedColumns!: string[];
   dataSource !: MatTableDataSource<PersonModel>;
 

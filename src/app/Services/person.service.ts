@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import PersonModel from '../Models/PersonModel';
+import ProfilePictureModel from '../Models/ProfilePictureModel';
 
 @Injectable({
   providedIn: 'root'
@@ -43,4 +44,19 @@ export class PersonService {
     return this.http.delete<any>(`https://localhost:44338/Person/${id}`);
    }
 
+   getUser(id: number){
+     return this.http.get<PersonModel>(`https://localhost:44338/Person/id/${id}`);
+   }
+   getProfilePicture(id: number){
+    return this.http.get<ProfilePictureModel>(`https://localhost:44338/ProfilePicture/${id}`);
+   }
+
+   setProfilePicture(value: ProfilePictureModel){
+    return this.http.post<ProfilePictureModel>(`https://localhost:44338/ProfilePicture/insert`, value);
+   }
+
+   updateProfilePicture(value: ProfilePictureModel){
+    return this.http.put<ProfilePictureModel>(`https://localhost:44338/ProfilePicture/update`, value);
+   }
+   
 }

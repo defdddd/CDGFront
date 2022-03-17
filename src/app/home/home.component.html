@@ -1,1 +1,32 @@
-<p>home works!</p>
+
+<header class="masthead" style="background-image:url('https://assets.website-files.com/5bc6bb30753aa575918ae320/5bdb98f714cac7260daa75ec_AudiForeground-min.png');">
+    <div class="intro-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+                <mat-card>
+                    <mat-card-header>
+                
+                    </mat-card-header>
+                    <mat-card-content>
+                        <ng-image-slider style="overflow-x:auto;" [imageSize]="{width: '650px', height: '400px', space: 6}" 
+                        [autoSlide]="{interval: 3, stopOnHover: true}" 
+                        [infinite]="true" 
+                        [images]="imageObject"
+                        [showArrow]="false"
+                        (imageClick)="triggeron()"
+                        (lightboxClose)="triggeroff()"
+                         #nav></ng-image-slider>
+                    </mat-card-content>
+
+
+

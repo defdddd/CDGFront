@@ -9,7 +9,6 @@ import { DialogAppointmentComponent } from '../dialog-appointment/dialog-appoint
 import AppointmentModel from '../Models/AppointmentModel';
 import { AppointmentService } from '../Services/appointment.service';
 import { PicturesService } from '../Services/pictures.service';
-
 import { AuthService } from '../Services/auth.service';
 import GaragePictureModel from '../Models/GaragePictureModel';
 import { DialogSlidePictureComponent } from '../dialog-slide-picture/dialog-slide-picture.component';
@@ -26,7 +25,7 @@ export class CommandsComponent implements AfterViewInit {
 
 
   data !: AppointmentModel[];
-  Keys: string[] = Object.keys(new AppointmentModel(0,'0','0',new Date,0,0,false));
+  Keys: string[] = Object.keys(new AppointmentModel(0,'0','0',"",0,0,false));
   displayedColumns!: string[];
   dataSource !: MatTableDataSource<AppointmentModel>;
 
@@ -66,11 +65,8 @@ export class CommandsComponent implements AfterViewInit {
 
       var picutre = new GaragePictureModel(0, element.id,event.target.files[i].name, JSON.stringify(byteArray));
 
-      console.log(byteArray);
-
       this.pictureService.addGaragePicture(picutre).subscribe(data => console.log(data));
     };
-
   }
   
   viewPicture(element: AppointmentModel){
