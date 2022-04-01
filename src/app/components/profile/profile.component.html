@@ -1,0 +1,69 @@
+<div *ngIf="true" class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <mat-card class="card">
+                    <mat-card-content>
+                        <div class="row" >
+                            <div class="col-md-6" >
+                                <div class="row">
+                                    <div class="col-12 bg-white p-0 px-3 py-3 mb-3">
+                                        <div class="d-flex flex-column align-items-center"> <img class="photo" [src]="this.ImagePath">
+                                            <p class="fw-bold h5 mt-2">{{profileObject.name}}</p>
+                                            <p class="text-muted">{{profileObject.email}}</p>
+            
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row">
+                                    <div class="col-12 bg-white px-3 mb-3 pb-3">
+                                        <div class="d-flex align-items-center justify-content-between border-bottom">
+                                            <p class="py-2">Full Name</p>
+                                            <p class="py-2 text-muted">{{profileObject.name}}</p>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between border-bottom">
+                                            <p class="py-2">Email</p>
+                                            <p class="py-2 text-muted">{{profileObject.email}}</p>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between border-bottom">
+                                            <p class="py-2">Phone</p>
+                                            <p class="py-2 text-muted">{{profileObject.phone}}</p>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between border-bottom">
+                                            <p class="py-2">Gender</p>
+                                            <p class="py-2 text-muted">{{profileObject.gender | titlecase}}</p>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <p class="py-2">Role</p>
+                                            <p class="py-2 text-muted"> {{getRole()}}</p>
+                                        </div>
+                                    </div>
+            
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-button [title]="'add picutre' | uppercase " (click)="fileInput.click()">
+                            <mat-icon>add_a_photo</mat-icon>
+                            <input #fileInput type="file" (change)="addPicture($event)" style="display:none;" />
+                            Picutre
+                        </button>
+                        <button mat-button [title]="'edit profile' | uppercase" (click)="editProfile()">
+                            <mat-icon>edit</mat-icon>
+                             Profile
+                        </button>
+                        <button mat-button [title]="'make appointment' | uppercase" (click)="makeAppointment()">
+                            <mat-icon>add_box</mat-icon>
+                            Appointment
+                        </button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>    
+    </div>  
+</div>  
+
+  

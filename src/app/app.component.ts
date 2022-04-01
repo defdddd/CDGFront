@@ -7,10 +7,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { delay } from 'rxjs';
 import { SliderTrigger } from './Helpers/SliderTrigger';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './dialogs/login/login.component';
 import { AuthService } from './Services/auth.service';
 import { PersonService } from './Services/person.service';
+import { RegisterComponent } from './dialogs/register/register.component';
 
 @Component({
   selector: 'app-root',

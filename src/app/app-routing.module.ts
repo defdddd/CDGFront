@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CommandsComponent } from './commands/commands.component';
-import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
-import { HomeComponent } from './home/home.component';
-import { MycommandsComponent } from './mycommands/mycommands.component';
-import { MyreviewsComponent } from './myreviews/myreviews.component';
-import { PictureComponent } from './picture/picture.component';
-import { ProfileComponent } from './profile/profile.component';
-import { ReviewsComponent } from './reviews/reviews.component';
-import { UsersComponent } from './users/users.component';
+import { HomeComponent } from './components/home/home.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
+import { UsersComponent } from './components/users/users.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { CommandsComponent } from './components/commands/commands.component';
+import { MycommandsComponent } from './components/mycommands/mycommands.component';
+import { MyreviewsComponent } from './components/myreviews/myreviews.component';
+import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
+import { PictureComponent } from './components/picture/picture.component';
 
 const routes: Routes = 
 [

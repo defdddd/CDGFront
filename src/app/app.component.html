@@ -22,7 +22,7 @@
                 <mat-divider></mat-divider>
             </div>
             <div *ngIf="IsLoggedIn">
-                <mat-list role="list">
+                <mat-list  role="list">
                     <mat-list-item role="listitem">
                         <button mat-button class="button-color" (click)="onSelect()" routerLink="/profile">
                             <mat-icon>person_pin</mat-icon>
@@ -45,7 +45,7 @@
                 <mat-divider></mat-divider>
             </div>
             <div *ngIf="IsLoggedIn && IsAdmin">
-                <mat-list role="list1">
+                <mat-list  role="list1">
                     <mat-list-item role="list1item">
                         <button mat-button class="button-color" (click)="onSelect()"  routerLink="/users">
                             <mat-icon>people</mat-icon>

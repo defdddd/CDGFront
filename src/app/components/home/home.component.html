@@ -1,0 +1,94 @@
+<header class="masthead">
+  <img style="height: auto; width: 100%; max-height: 800px; max-width: 1500px;" src="assets/images/back.jpg">
+
+  <mat-divider></mat-divider>
+
+  <div class="wrapper">
+    <h1 class="h1"> What we do !</h1>
+  </div>
+  <mat-divider></mat-divider>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md">
+        <h3 class="text-responsive">EXTERIOR DETAILING</h3>
+        <img class="img-responsive" src="assets/home-img/istockphoto-1060499948-612x612.jpg" alt="">
+        <ul class="details">
+          <li><span>Exterior lac correction / polish&nbsp;</span></li>
+        </ul>
+        <mat-divider></mat-divider>
+        <br><br>
+      </div>
+      <div class="col-md">
+        <h3 class="text-responsive">INTERIOR DETAILING</h3>
+        <img class="img-responsive" src="assets/home-img/istockphoto-1181581304-612x612.jpg" alt="">
+        <ul class="details">
+          <li><span>Interior cleaning and leather protection&nbsp;</span></li>
+        </ul>
+        <mat-divider></mat-divider>
+        <br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md">
+        <h3 class="text-responsive">HEADLIGHTS DETAILING</h3>
+        <img class="img-responsive" src="assets/home-img/faruri.jpg" alt="">
+        <ul class="details">
+          <li><span>Restoring / polish headlights and apply protection&nbsp;</span></li>
+        </ul>
+        <mat-divider></mat-divider>
+        <br><br>
+      </div>
+      <div class="col-md">
+        <h3 class="text-responsive">CERAMIC PROTECTION</h3>
+        <img class="img-responsive" src="assets/home-img/istockphoto-1300888522-612x612.jpg" alt="">
+        <ul class="details">
+          <li><span>We apply a ceramic coating at your car&nbsp;</span></li>
+        </ul>
+        <mat-divider></mat-divider>
+        <br><br>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md">
+        <h3 class="text-responsive">ENGINE CLEANING</h3>
+        <img class="img-responsive"
+          src="assets/home-img/depositphotos_103264048-stock-photo-car-detailing-series-cleaning-car.jpg" alt="">
+        <ul class="details">
+          <li><span>Engine cleaning, no water preasure&nbsp;</span></li>
+        </ul>
+        <mat-divider></mat-divider>
+        <br><br>
+      </div>
+
+      <div class="col-md">
+        <h3 class="text-responsive">WHEELS DETAILING</h3>
+        <img class="img-responsive" src="assets/home-img/car-wheels-detailing.jpg" alt="">
+        <ul class="details">
+          <li><span>Car wheels detailing and proiection&nbsp;</span></li>
+        </ul>
+        <mat-divider></mat-divider>
+        <br><br>
+      </div>
+    </div>
+  </div>
+
+  <span class="text-responsive">View users cars after detailing !&nbsp;</span>
+
+  <mat-divider></mat-divider>
+
+  <mat-card class="card">
+    <mat-card-header>
+
+    </mat-card-header>
+    <mat-card-content>
+      <ng-image-slider [imageSize]="{width: '650px', height: '400px', space: 6}"
+        [autoSlide]="{interval: 3, stopOnHover: true}" [infinite]="true" [images]="imageObject" [showArrow]="false"
+        (imageClick)="triggeron()" (lightboxClose)="triggeroff()" #nav></ng-image-slider>
+    </mat-card-content>
+
+  </mat-card>
+
+
+</header>

@@ -2,18 +2,21 @@ mat-toolbar {
   background: rgb(24, 26, 27);
   color: white;
   position: sticky;
-
+  height: 100px;
 }
+
 
 mat-sidenav {
   margin: 16px;
-  width: 240px;
   border-right: none;
   background: rgb(24, 26, 27);
   color: white;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 16px;
   text-align: center;
+  overflow-x:auto;
+  width: inherit;
+  background-color: rgb(24, 26, 27) ;
 
 }
 footer {
@@ -33,11 +36,13 @@ footer {
   align-items: center;
   font-size: 2rem;
   color: lightgray;
+  
 }
 
 mat-sidenav-container {
   height: inherit;
   min-height: calc(100vh - 65px);
+
 }
 
 .menu-button {
@@ -65,6 +70,7 @@ mat-sidenav-container {
 .name {
   margin-top: 8px;
   font-weight: normal;
+  font-size: 18px;
 }
 
 .designation {
