@@ -1,28 +1,28 @@
 mat-toolbar {
-  background: rgb(24, 26, 27);
-  color: white;
   position: sticky;
-  height: 100px;
 }
 
-
+mat-toolbar-row{
+  background-color: rgb(43, 46, 48);
+  height: 90px;
+}
 mat-sidenav {
   margin: 16px;
   border-right: none;
-  background: rgb(24, 26, 27);
-  color: white;
   border-radius: 5px;
   padding: 16px;
   text-align: center;
   overflow-x:auto;
   width: inherit;
-  background-color: rgb(24, 26, 27) ;
 
 }
 footer {
   padding: 30px 0;
-  background-color: rgb(24, 26, 27) ;
   width: inherit;
+  background-color: rgb(43, 46, 48);
+  color: white;
+  height: 300px;
+
 }
 
 
@@ -35,7 +35,6 @@ footer {
   justify-content: center;
   align-items: center;
   font-size: 2rem;
-  color: lightgray;
   
 }
 
@@ -53,9 +52,7 @@ mat-sidenav-container {
   font-size: 1rem;
 
 }
- .button-color{
-    color: rgb(255, 255, 255);
-  }
+
 
   .button-text {
     padding-left: 10px;
@@ -76,7 +73,6 @@ mat-sidenav-container {
 .designation {
   margin-top: 2px;
   font-size: 0.7rem;
-  color: lightgrey;
 }
 
 mat-divider {

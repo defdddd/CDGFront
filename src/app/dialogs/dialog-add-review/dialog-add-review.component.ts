@@ -17,7 +17,7 @@ export class DialogAddReviewComponent implements OnInit {
   private Review !: ReviewModel;
   reviewForm !: FormGroup;
 
-  ratings: Rating = 
+  ratings: Rating =
     {
       value: 1,
       max: 10,
@@ -26,43 +26,42 @@ export class DialogAddReviewComponent implements OnInit {
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public appointment: AppointmentModel, private authService: AuthService,
-              private reviewService: ReviewService, private formbuilder: FormBuilder,private dialogRef: MatDialogRef<DialogAddReviewComponent>) 
-  {
+    private reviewService: ReviewService, private formbuilder: FormBuilder, private dialogRef: MatDialogRef<DialogAddReviewComponent>) {
   }
 
   ngOnInit(): void {
 
     this.reviewForm = this.formbuilder.group({
-      grade : ['', Validators.compose([Validators.required, Validators.min(1),Validators.max(10)])],
-      review : ['', Validators.required]
+      grade: ['', Validators.compose([Validators.required, Validators.min(1), Validators.max(10)])],
+      review: ['', Validators.required]
     });
 
-    this.Review = new ReviewModel(0,0,0,0,'0',false)
+    this.Review = new ReviewModel(0, 0, 0, 0, '0', false)
     this.Review.appointmentId = this.appointment.id;
     this.Review.userId = this.authService.GetId();
     this.Review.isOke = false;
   }
 
-  addReview(){
+  addReview() {
 
-    if(!this.reviewForm.value.grade) 
-       this.ratings.color = "warn"
+    if (!this.reviewForm.value.grade)
+      this.ratings.color = "warn"
 
-    if(this.reviewForm.valid){
+    if (this.reviewForm.valid) {
       this.Review.grade = this.reviewForm.value.grade;
       this.Review.review = this.reviewForm.value.review;
-      this.reviewService.addReview(this.Review).subscribe(data =>{
-        if(data){
+      this.reviewService.addReview(this.Review).subscribe(data => {
+        if (data) {
           this.reviewForm.reset();
           this.dialogRef.close();
         }
-    });
+      });
     }
   }
-  
-  changeColor(){
 
-    if(this.reviewForm.value.grade) 
+  changeColor() {
+
+    if (this.reviewForm.value.grade)
       this.ratings.color = "primary";
   }
 }

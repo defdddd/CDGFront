@@ -1,3 +1,3 @@
-export class SliderTrigger{
-    public static Trigger : boolean = false;
+export class SliderTrigger {
+    public static Trigger: boolean = false;
 }

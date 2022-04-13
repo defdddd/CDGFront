@@ -68,7 +68,57 @@
     text-align: center;
     font-size: 45px;
   }
+  .card {
+    background-color: whitesmoke;
+    max-width: 250px;
+    height: 300px;
+    margin: 10px;
+  }
+mat-card{
+  box-shadow: none;
+}
   
+
+.card:hover {
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+}
+
+mat-card-content {
+  height: 300px;
+  text-align: justify;
+  overflow-y: auto;
+}
+
+.avatar {
+  border-radius: 50%;
+  height: 75px;
+  width: 75px;
+}
+
+mat-card-title {
+  margin-bottom: 5px;
+}
+
+mat-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+mat-icon {
+  color: #fad201;
+  width: 10px;
+  height: 10px;
+  margin: 5px;
+  padding: 5px;
+  margin-left: 8px;
+  margin-bottom: 15px;
+}
+.stars{
+    margin-right: 25px;
+}
+
+
   @keyframes textclip {
     to {
       background-position: 200% center;

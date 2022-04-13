@@ -14,6 +14,10 @@ import { DialogAppointmentComponent } from 'src/app/dialogs/dialog-appointment/d
 import GaragePictureModel from 'src/app/Models/GaragePictureModel';
 import { DialogSlidePictureComponent } from 'src/app/dialogs/dialog-slide-picture/dialog-slide-picture.component';
 import { DateHelper } from 'src/app/Helpers/DateHelper';
+import { EmailService } from 'src/app/Services/email.service';
+import { PersonService } from 'src/app/Services/person.service';
+import Swal from 'sweetalert2';
+import { R3TargetBinder } from '@angular/compiler';
 
 
 @Component({
@@ -34,8 +38,8 @@ export class CommandsComponent implements AfterViewInit {
   dataSource !: MatTableDataSource<AppointmentModel>;
   searchForm !: FormGroup;
 
-  constructor(private auth: AuthService,private route: Router,private pictureService: PicturesService, private formbuilder: FormBuilder,
-              private dialog: MatDialog, private appointmentService: AppointmentService, private _liveAnnouncer: LiveAnnouncer) 
+  constructor(private auth: AuthService,private route: Router,private pictureService: PicturesService, private formbuilder: FormBuilder,private emailService : EmailService,
+              private dialog: MatDialog, private appointmentService: AppointmentService, private _liveAnnouncer: LiveAnnouncer, private personService : PersonService) 
               {
                 this.Keys.push("Action");
                 this.displayedColumns = this.Keys;
@@ -57,7 +61,8 @@ export class CommandsComponent implements AfterViewInit {
 
   openDialog() {
     this.dialog.open(DialogAppointmentComponent, {
-      width:"auto"
+      width:"auto",
+      maxWidth:"700px"
     }).afterClosed().subscribe(()=>
       {
       this.setAppointments();
@@ -89,18 +94,38 @@ export class CommandsComponent implements AfterViewInit {
   editAppointment(element: AppointmentModel){
     this.dialog.open(DialogAppointmentComponent, {
       width:"auto",
+      maxWidth:"700px",
       data: element
       
-    }).afterClosed().subscribe(()=>
+    }).afterClosed().subscribe((data)=>
       {
+       if(data.isDone)
+          this.personService.getUser(data.personId).subscribe(user => 
+            this.emailService.sendEmailAppointmentDone(user.email).subscribe(x => x)
+            );
        this.setAppointments();
       }   
     );
   }
 
   deleteAppointment(element: AppointmentModel){
-    this.appointmentService.deleteAppointment(element.id).subscribe(data =>{
-      this.setAppointments();
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this appointment!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      confirmButtonColor : '#3378cc',
+      cancelButtonText: 'No, keep it',
+    }).then((result) => {
+
+      if (result.isConfirmed) {
+        this.appointmentService.deleteAppointment(element.id).subscribe(data =>{
+          this.setAppointments();
+        });
+      } else if (result.isDismissed) {
+
+      }
     });
   }
 
@@ -195,6 +220,16 @@ search(){
   }
   else
     this.setAppointments();  
+}
+
+private debounce(cb : any, delay = 1000){
+  let timeout: NodeJS.Timeout 
+  return() =>{
+    clearTimeout(timeout);
+    timeout = setTimeout(()=>{
+      cb()
+    },delay)
+  }
 }
 
 }

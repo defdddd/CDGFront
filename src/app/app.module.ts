@@ -8,7 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
 import { CDGInterceptor } from './Interceptor/CDGInterceptor';
 import { ReviewsComponent } from './components/reviews/reviews.component';
-
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
@@ -46,6 +45,9 @@ import { MyreviewsComponent } from './components/myreviews/myreviews.component';
 import { PictureComponent } from './components/picture/picture.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './dialogs/register/register.component';
+import { NgChartsModule } from 'ng2-charts';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { DialogForgotPasswordComponent } from './dialogs/dialog-forgot-password/dialog-forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,8 @@ import { RegisterComponent } from './dialogs/register/register.component';
     PictureComponent,
     DialogSlidePictureComponent,
     DialogAddReviewComponent,
-    DialogMakeAppointmentComponent
+    DialogMakeAppointmentComponent,
+    DialogForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +99,9 @@ import { RegisterComponent } from './dialogs/register/register.component';
     MatDividerModule,
     NgbModule,
     MatListModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    NgChartsModule,
+    MatSlideToggleModule
   ],
   providers: [
     {

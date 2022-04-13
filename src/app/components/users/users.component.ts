@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/Services/auth.service';
 import { PersonService } from 'src/app/Services/person.service';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -51,7 +52,8 @@ export class UsersComponent  implements AfterViewInit {
 
   openDialog() {
     this.dialog.open(DialogUsersComponent, {
-      width:"auto"
+      width:"auto",
+      maxWidth:"700px"
     }).afterClosed().subscribe( val =>
       {
        this.setUsers();
@@ -65,6 +67,7 @@ export class UsersComponent  implements AfterViewInit {
   editUser(element: PersonModel){
     this.dialog.open(DialogUsersComponent, {
       width:"auto",
+      maxWidth:"700px",
       data: element
       
     }).afterClosed().subscribe( val =>
@@ -75,8 +78,22 @@ export class UsersComponent  implements AfterViewInit {
   }
 
   deleteUser(element: PersonModel){
-    this.userService.deleteUser(element.id).subscribe(data =>{
-      this.setUsers();
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this user!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      confirmButtonColor : '#3378cc',
+      cancelButtonText: 'No, keep it',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.userService.deleteUser(element.id).subscribe(data =>{
+          this.setUsers();
+        });
+      } else if (result.isDismissed) {
+
+      }
     });
   }
 

@@ -1,21 +1,22 @@
 <div class="container" style="overflow-x:auto; margin-top: 5px; font-size: 15px;">
-  <form [formGroup]="this.searchForm">
-    <mat-form-field appearance="fill" style="width: 200px;">
-      <mat-label>Search by</mat-label>
-      <mat-icon matPrefix>settings</mat-icon>
-      <mat-select formControlName="option">
-        <mat-option [value]="'username'">Username</mat-option>
-        <mat-option [value]="'email'">Email</mat-option>
-        <mat-option [value]="'name'">Name</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="fill">
-      <mat-label>Search</mat-label>
-      <mat-icon matPrefix>search</mat-icon>
-      <input matInput formControlName="value" (input)="search()" type="search" #input>
-    </mat-form-field>
-    </form>
-  <div>
+
+  <div style="margin-top: 33px;">
+    <form [formGroup]="this.searchForm">
+      <mat-form-field appearance="fill" style="width: 200px;">
+        <mat-label>Search by</mat-label>
+        <mat-icon matPrefix>settings</mat-icon>
+        <mat-select formControlName="option">
+          <mat-option [value]="'username'">Username</mat-option>
+          <mat-option [value]="'email'">Email</mat-option>
+          <mat-option [value]="'name'">Name</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput formControlName="value" (input)="search()" type="search" #input>
+      </mat-form-field>
+      </form>
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8" >
           <!-- Position Column -->

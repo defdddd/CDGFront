@@ -14,6 +14,7 @@ import { DialogSlidePictureComponent } from 'src/app/dialogs/dialog-slide-pictur
 import AppointmentModel from 'src/app/Models/AppointmentModel';
 import { AppointmentService } from 'src/app/Services/appointment.service';
 import { AuthService } from 'src/app/Services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-mycommands',
@@ -66,6 +67,7 @@ export class MycommandsComponent implements AfterViewInit {
   editAppointment(element: AppointmentModel){
     this.dialog.open(DialogAppointmentComponent, {
       width:"auto",
+      maxWidth:"700px",
       data: element
       
     }).afterClosed().subscribe(()=>
@@ -76,8 +78,23 @@ export class MycommandsComponent implements AfterViewInit {
   }
 
   deleteAppointment(element: AppointmentModel){
-    this.appointmentService.deleteAppointment(element.id).subscribe(data =>{
-      this.setAppointments();
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this appointment!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      confirmButtonColor : '#3378cc',
+      cancelButtonText: 'No, keep it',
+    }).then((result) => {
+
+      if (result.isConfirmed) {
+        this.appointmentService.deleteAppointment(element.id).subscribe(data =>{
+          this.setAppointments();
+        });
+      } else if (result.isDismissed) {
+
+      }
     });
   }
   public filter(){
@@ -86,8 +103,7 @@ export class MycommandsComponent implements AfterViewInit {
   }
 
   private setAppointments(){
-     this.appointmentService.GetCount().subscribe(number =>
-      this.appointmentService.myAppointment(number).subscribe(
+      this.appointmentService.myAppointment().subscribe(
         (data: AppointmentModel[]) => {
           if(this.option === '3' || this.option === '6'){
             var int = +this.option;
@@ -99,7 +115,7 @@ export class MycommandsComponent implements AfterViewInit {
           this.dataSource = new MatTableDataSource(this.data);
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
-        }));
+        });
   }
 
   viewPicture(element: AppointmentModel){
@@ -110,7 +126,8 @@ export class MycommandsComponent implements AfterViewInit {
 
   addReview(element: AppointmentModel){
     this.dialog.open(DialogAddReviewComponent, {
-      data: element
+      data: element,
+      maxWidth:'700px'
     })
   }
 

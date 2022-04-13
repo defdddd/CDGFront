@@ -2,28 +2,29 @@
 <div mat-dialog-content>
     <form [formGroup]="this.reviewForm" style="overflow-x:auto;">
 
-            <ng-container >
-                <div class="rating">
-                    <span>
-                        Rating {{this.reviewForm.value.grade || 0}} of {{ratings.max}}
-                    </span>
-                    <div>
-                        <ngx-material-rating [color]="ratings.color" (ngModelChange)="changeColor()" formControlName="grade" [max]="ratings.max">
-                        </ngx-material-rating>
-                    </div>
+        <ng-container>
+            <div class="rating">
+                <span>
+                    Rating {{this.reviewForm.value.grade || 0}} of {{ratings.max}}
+                </span>
+                <div>
+                    <ngx-material-rating [color]="ratings.color" (ngModelChange)="changeColor()" formControlName="grade"
+                        [max]="ratings.max">
+                    </ngx-material-rating>
                 </div>
-            </ng-container>
-            <br>
+            </div>
+        </ng-container>
+        <br>
 
         <mat-form-field appearance="outline">
             <mat-label>Review</mat-label>
-            <textarea formControlName="review" cols="40" rows="5" matInput ></textarea>
+            <textarea formControlName="review" cols="40" rows="5" matInput></textarea>
             <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
         </mat-form-field>
     </form>
-        
+
 </div>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close color="warn">Cancel</button>
-    <button mat-button  (click)="addReview()" color="primary">Save Review</button>
+    <button mat-button (click)="addReview()" color="primary">Save Review</button>
 </mat-dialog-actions>

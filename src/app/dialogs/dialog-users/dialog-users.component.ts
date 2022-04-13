@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import PersonModel from 'src/app/Models/PersonModel';
 import { PersonService } from 'src/app/Services/person.service';
@@ -15,29 +15,29 @@ import { AuthService } from 'src/app/Services/auth.service';
 export class DialogUsersComponent implements OnInit {
 
   userForm !: FormGroup;
-  actionBtn : string = "Add";
-  private id : number = 0;
+  actionBtn: string = "Add";
+  private id: number = 0;
   isAdmin: boolean = false;
 
   constructor(private service: PersonService, private formbuilder: FormBuilder,
-     private route: Router, private dialogRef: MatDialogRef<DialogUsersComponent>,
-     @Inject(MAT_DIALOG_DATA) private editData: PersonModel, auth : AuthService
-     ) { 
-       this.isAdmin = auth.IsAdmin();
-     }
+    private route: Router, private dialogRef: MatDialogRef<DialogUsersComponent>,
+    @Inject(MAT_DIALOG_DATA) private editData: PersonModel, auth: AuthService
+  ) {
+    this.isAdmin = auth.IsAdmin();
+  }
 
   ngOnInit(): void {
     this.userForm = this.formbuilder.group({
-      userName : ['', Validators.required],
-      password : ['', Validators.required],
-      name : ['', Validators.required],
-      email : ['', Validators.required],
-      gender : ['', Validators.required],
-      phone : ['', Validators.required],
+      userName: ['', Validators.required],
+      password: ['', Validators.required],
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+      gender: ['', Validators.required],
+      phone: ['', Validators.required],
       isAdmin: ['', Validators.required]
     });
 
-    if(this.editData){
+    if (this.editData) {
       this.actionBtn = "Update";
       this.id = this.editData.id;
       this.userForm.controls['userName'].setValue(this.editData.userName);
@@ -50,37 +50,36 @@ export class DialogUsersComponent implements OnInit {
     }
   }
 
-  addUser(){
+  addUser() {
 
-    if(this.userForm.valid){
+    if (this.userForm.valid) {
 
-    var person = this.userForm.value;
-    person.id = this.id;
+      var person = this.userForm.value;
+      person.id = this.id;
 
-    if(person.isAdmin == "true") 
-      person.isAdmin = true;
-    else
-      person.isAdmin = false;
+      if (person.isAdmin == "true")
+        person.isAdmin = true;
+      else
+        person.isAdmin = false;
 
-    person.phone = person.phone.toString();
+      person.phone = person.phone.toString();
 
-    if(this.actionBtn == "Add")
-      this.service.addUser(person).subscribe(data =>{
-            if(data){
-              this.userForm.reset();
-              this.dialogRef.close(JSON.stringify(data));
-            }
+      if (this.actionBtn == "Add")
+        this.service.addUser(person).subscribe(data => {
+          if (data) {
+            this.userForm.reset();
+            this.dialogRef.close(JSON.stringify(data));
+          }
         });
-    else
-    {
-      this.service.updateUser(person).subscribe(data =>{
-        if(data){
-          this.userForm.reset();
-          this.dialogRef.close(JSON.stringify(data));
-        }
-      });
+      else {
+        this.service.updateUser(person).subscribe(data => {
+          if (data) {
+            this.userForm.reset();
+            this.dialogRef.close(JSON.stringify(data));
+          }
+        });
+      }
     }
-  }
   }
 
 }

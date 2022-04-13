@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/Services/auth.service';
 import { PicturesService } from 'src/app/Services/pictures.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DialogPictureComponent } from 'src/app/dialogs/dialog-picture/dialog-picture.component';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -50,8 +51,23 @@ export class PictureComponent implements AfterViewInit {
   }
 
   deletePicture(element: GaragePictureModel){
-    this.pictureService.deleteGaragePicture(element.id).subscribe(data =>{
-      this.setPicutres();
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this picture!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      confirmButtonColor : '#3378cc',
+      cancelButtonText: 'No, keep it',
+    }).then((result) => {
+
+      if (result.isConfirmed) {
+        this.pictureService.deleteGaragePicture(element.id).subscribe(data =>{
+          this.setPicutres();
+        });
+      } else if (result.isDismissed) {
+
+      }
     });
   }
   viewPicture(element: GaragePictureModel){

@@ -1,5 +1,6 @@
-<div class="container" style="overflow-x:auto; margin-top: 5px; font-size: 14px;" >
-        <form [formGroup]="this.searchForm">
+<div class="container" style="overflow-x:auto; margin-top: 5px; font-size: 14px;" >      
+    <div style="margin-top: 33px;">
+      <form [formGroup]="this.searchForm">
         <mat-form-field appearance="fill" style="width: 200px;">
           <mat-label>Search by</mat-label>
           <mat-icon matPrefix>settings</mat-icon>
@@ -20,11 +21,8 @@
           <mat-icon matPrefix>search</mat-icon>
           <input matInput formControlName="value" (input)="search()" type="search" #input>
         </mat-form-field>
-
         </form>
         <mat-checkbox class="example-margin" color="primary" [(ngModel)]="checked" (click)="isDoneFilter()">Ongoing appointment</mat-checkbox>
-
-    <div>
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)" class="mat-elevation-z8" >
           <!-- Position Column -->

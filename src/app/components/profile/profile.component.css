@@ -64,3 +64,6 @@ mat-card-actions{
     justify-content: center;
     overflow-x: auto;
 }
+.mat-icon {
+    vertical-align: middle;
+}

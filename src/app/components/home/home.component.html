@@ -74,21 +74,51 @@
     </div>
   </div>
 
-  <span class="text-responsive">View users cars after detailing !&nbsp;</span>
+  <span class="text-responsive" style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif"
+  >Users rating&nbsp;
+</span>
 
   <mat-divider></mat-divider>
 
-  <mat-card class="card">
+  <!-- <mat-card class="card">
     <mat-card-header>
-
     </mat-card-header>
     <mat-card-content>
-      <ng-image-slider [imageSize]="{width: '650px', height: '400px', space: 6}"
-        [autoSlide]="{interval: 3, stopOnHover: true}" [infinite]="true" [images]="imageObject" [showArrow]="false"
-        (imageClick)="triggeron()" (lightboxClose)="triggeroff()" #nav></ng-image-slider>
+      
     </mat-card-content>
+  </mat-card> -->
 
-  </mat-card>
 
-
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let review of Reviews" class="col-sm">
+        <mat-card>
+          <img [src]="Image.get(review.userId)" class="avatar" alt="Avatar"/>
+          <mat-card-header>
+            <mat-card-title>{{Name.get(review.userId)}}</mat-card-title>
+            <div class="stars">
+              <mat-icon [title]="review.grade + '/10'" *ngFor="let item of createRange(review.grade )" >grade</mat-icon></div>
+          </mat-card-header>
+          <mat-card-content>
+            <div style="display: flex; justify-content: center;" >
+              <p>{{ review.review }}</p>
+              
+            </div>
+            <div style="margin-top: 30px;">
+              <ng-image-slider [id]="review.id"  [imageSize]="{width: 350, space: 1}" 
+              [autoSlide]="{interval: 3, stopOnHover: true}" [infinite]="true" [images]="imageObject.get(review.appointmentId)!" [showArrow]="false"
+              (imageClick)="triggeron()" (lightboxClose)="triggeroff()" ></ng-image-slider>
+            </div>
+          </mat-card-content>
+          
+          <mat-card-actions>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+    <button mat-button color="primary" (click)="back()">Go back</button>
+    <button mat-button color="primary" (click)="next()">View next</button>
+  </div>
 </header>
+
+  

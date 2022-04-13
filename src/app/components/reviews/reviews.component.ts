@@ -9,6 +9,7 @@ import { AuthService } from 'src/app/Services/auth.service';
 import {LiveAnnouncer} from '@angular/cdk/a11y';
 import { ReviewService } from 'src/app/Services/review.service';
 import { DialogReviewComponent } from 'src/app/dialogs/dialog-review/dialog-review.component';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -45,7 +46,8 @@ export class ReviewsComponent implements AfterViewInit {
 
   openDialog() {
     this.dialog.open(DialogReviewComponent, {
-      width:"auto"
+      width:"auto",
+      maxWidth:"700px"
     }).afterClosed().subscribe(()=>
         {
         this.setReviews();
@@ -59,6 +61,7 @@ export class ReviewsComponent implements AfterViewInit {
   editReview(element: ReviewModel){
     this.dialog.open(DialogReviewComponent, {
       width:"auto",
+      maxWidth:"700px",
       data: element
       
     }).afterClosed().subscribe(()=>
@@ -69,8 +72,22 @@ export class ReviewsComponent implements AfterViewInit {
   }
 
   deleteReview(element: ReviewModel){
-    this.reviewService.deleteReview(element.id).subscribe(data =>{
-      this.setReviews();
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover this review!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      confirmButtonColor : '#3378cc',
+      cancelButtonText: 'No, keep it',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.reviewService.deleteReview(element.id).subscribe(data =>{
+          this.setReviews();
+        });
+      } else if (result.isDismissed) {
+
+      }
     });
   }
 

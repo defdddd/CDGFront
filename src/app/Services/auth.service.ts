@@ -15,62 +15,74 @@ import { PersonService } from './person.service';
 export class AuthService {
   private AUTH_REQUEST: string = "https://localhost:44338/Auth";
   private REGISTER_REQUEST: string = "https://localhost:44338/Auth/register";
-  private AUTH: string ="loggedIn";
+  private CHECK_EMAIL: string = "https://localhost:44338/Auth/email/";
+  private FORGOT_EMAIL: string = "https://localhost:44338/SendEmail/forgotPasswordToken/";
+  private AUTH: string = "loggedIn";
 
-  constructor(private http: HttpClient, private route: Router) { 
+  constructor(private http: HttpClient, private route: Router) {
     this.CheckToken();
-   }
+  }
 
-  Register(person: PersonModel): Observable<boolean>{
+  Register(person: PersonModel): Observable<boolean> {
     return this.http.post<boolean>(this.REGISTER_REQUEST, person);
   }
 
   Auth(auth: AuthModel): any {
-    return this.http.post<TokenModel>(this.AUTH_REQUEST, auth).subscribe(data =>
-    {
+    return this.http.post<TokenModel>(this.AUTH_REQUEST, auth).subscribe(data => {
       this.setAuth(data);
       window.location.reload();
     });
   }
 
-  GetToken(): string { 
+  CheckEmail(email: string) {
+    return this.http.get<boolean>(this.CHECK_EMAIL + email);
+  }
+
+  ForgotPasswordLogin(email: string, code: string) {
+    return this.http.get<TokenModel>(this.FORGOT_EMAIL + email + '/' + code).subscribe(data => {
+      this.setAuth(data);
+      window.location.reload();
+    });
+  }
+
+  GetToken(): string {
     const value = localStorage.getItem(this.AUTH);
-      if(!!value)
-        return (JSON.parse(value) as TokenModel).access_Token;
-      
+    if (!!value)
+      return (JSON.parse(value) as TokenModel).access_Token;
+
     return "NULL";
   }
 
-  LoggedIn(): boolean{
+  LoggedIn(): boolean {
 
-    if(this.GetToken() == "NULL") return false;
+    if (this.GetToken() == "NULL") return false;
     return true;
   }
-  IsAdmin(): boolean{
-    if(this.GetToken() == "NULL") return false;
+  IsAdmin(): boolean {
+    if (this.GetToken() == "NULL") return false;
     var token = jwtDecode<Token>(this.GetToken());
     return token['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'] == "Admin";
   }
 
-  GetId(): number{
-    if(this.GetToken() == "NULL") return -1;
+  GetId(): number {
+    if (this.GetToken() == "NULL") return -1;
     var token = jwtDecode<Token>(this.GetToken());
     return token.Identifier;
   }
 
-  LogOut(){
+  LogOut() {
     localStorage.removeItem(this.AUTH);
     window.location.reload();
   }
 
-  private setAuth(token: TokenModel){
-    if(token.userName == "" && token.access_Token == "")
+  private setAuth(token: TokenModel) {
+    if (token.userName == "" && token.access_Token == "")
       localStorage.removeItem(this.AUTH);
     else localStorage.setItem(this.AUTH, JSON.stringify(token));
   }
 
   private CheckToken(): void {
-    if(this.GetToken() !== "NULL"){
+    if (this.GetToken() !== "NULL") {
       var token = jwtDecode<Token>(this.GetToken());
       if (Date.now() >= token.exp * 1000) {
         this.LogOut();

@@ -14,7 +14,7 @@ export class DialogPictureComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public editData: GaragePictureModel, private sanitizer: DomSanitizer) { }
 
- async ngOnInit() {
+  async ngOnInit() {
     this.ImagePath = this.sanitizer.bypassSecurityTrustResourceUrl(`${JSON.parse(this.editData.image)}`);
   }
 }
