@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { valueInRange } from 'igniteui-angular';
+import { SliderTrigger } from 'src/app/Helpers/SliderTrigger';
 import { AppointmentValidator } from 'src/app/Helpers/Validators';
 import { AuthService } from 'src/app/Services/auth.service';
 import { EmailService } from 'src/app/Services/email.service';
 import Swal from 'sweetalert2';
+import { ForgotpasswordComponent } from '../forgotpassword/forgotpassword.component';
 import { LoginComponent } from '../login/login.component';
 
 @Component({
@@ -35,7 +37,22 @@ export class DialogForgotPasswordComponent implements OnInit {
   submit() {
     var code: string = this.form.get('code')?.value;
     var email = this.form.get('email')?.value;
-    this.authService.ForgotPasswordLogin(email, code);
+    this.authService.ForgotPasswordLogin(email, code).subscribe(data => {
+      if(data){
+        this.authService.setAuth(data);
+
+        this.dialog.open(ForgotpasswordComponent, {
+          width: "auto"
+        }).afterClosed().subscribe(()=>{
+          this.authService.LogOut();
+          window.location.replace('/');
+
+        });
+
+        this.dialogRef.close();
+
+      }
+    });;
   }
   sendEmail() {
     var email = this.form.get('email')?.value;

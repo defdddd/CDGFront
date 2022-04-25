@@ -32,3 +32,10 @@
   mat-icon{
     margin-right: 10px;
   }
+  .mat-row {
+    height: auto;
+  }
+  
+  .mat-cell {
+    padding: 9px 9px 9px 0;
+  }

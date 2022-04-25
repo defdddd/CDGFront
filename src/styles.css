@@ -14,7 +14,7 @@ body {
 
 *::-webkit-scrollbar {
     width: 5px;
-    height: 1px;
+    height: 1px;   
 }
 
 .visually-hidden {

@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { DialogAddReviewComponent } from 'src/app/dialogs/dialog-add-review/dialog-add-review.component';
 import { DialogAppointmentComponent } from 'src/app/dialogs/dialog-appointment/dialog-appointment.component';

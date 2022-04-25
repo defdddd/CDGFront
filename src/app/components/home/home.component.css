@@ -84,7 +84,7 @@ mat-card{
 }
 
 mat-card-content {
-  height: 300px;
+  min-height: 100px;
   text-align: justify;
   overflow-y: auto;
 }

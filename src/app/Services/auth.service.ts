@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 import { catchError, Observable, throwError } from 'rxjs';
+import { ChangePasswordTrigger } from '../Helpers/ChangePasswordTrigger';
 import { Token } from '../Interfaces/Token';
 import AuthModel from '../Models/AuthModel';
 import PersonModel from '../Models/PersonModel';
@@ -39,10 +40,7 @@ export class AuthService {
   }
 
   ForgotPasswordLogin(email: string, code: string) {
-    return this.http.get<TokenModel>(this.FORGOT_EMAIL + email + '/' + code).subscribe(data => {
-      this.setAuth(data);
-      window.location.reload();
-    });
+     return this.http.get<TokenModel>(this.FORGOT_EMAIL + email + '/' + code);
   }
 
   GetToken(): string {
@@ -75,7 +73,7 @@ export class AuthService {
     window.location.reload();
   }
 
-  private setAuth(token: TokenModel) {
+ setAuth(token: TokenModel) {
     if (token.userName == "" && token.access_Token == "")
       localStorage.removeItem(this.AUTH);
     else localStorage.setItem(this.AUTH, JSON.stringify(token));

@@ -13,3 +13,10 @@
     max-width: 1200px;
     margin: 0 auto;
   }
+  .mat-row {
+    height: auto;
+  }
+  
+  .mat-cell {
+    padding: 9px 9px 9px 0;
+  }

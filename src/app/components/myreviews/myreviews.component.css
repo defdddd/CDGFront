@@ -23,4 +23,11 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }  
+  .mat-row {
+    height: auto;
+  }
+  
+  .mat-cell {
+    padding: 9px 9px 9px 0;
   }

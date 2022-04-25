@@ -7,7 +7,6 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { CommandsComponent } from './components/commands/commands.component';
 import { MycommandsComponent } from './components/mycommands/mycommands.component';
 import { MyreviewsComponent } from './components/myreviews/myreviews.component';
-import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
 import { PictureComponent } from './components/picture/picture.component';
 
 const routes: Routes = 
@@ -19,7 +18,6 @@ const routes: Routes =
   {path: "mycommands", component: MycommandsComponent},
   {path: "myreviews", component: MyreviewsComponent},
   {path: "users", component: UsersComponent},
-  {path: "forgotpassword", component: ForgotpasswordComponent},
   {path: "pictures", component: PictureComponent}
 
 ];

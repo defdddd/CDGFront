@@ -91,27 +91,26 @@
 
   <div class="container">
     <div class="row">
-      <div *ngFor="let review of Reviews" class="col-sm">
-        <mat-card>
+      <div *ngFor="let review of Reviews" class="col-md-4" style="margin-top: 4px;">
+        <mat-card style="height: 560px;">
           <img [src]="Image.get(review.userId)" class="avatar" alt="Avatar"/>
           <mat-card-header>
             <mat-card-title>{{Name.get(review.userId)}}</mat-card-title>
             <div class="stars">
               <mat-icon [title]="review.grade + '/10'" *ngFor="let item of createRange(review.grade )" >grade</mat-icon></div>
           </mat-card-header>
-          <mat-card-content>
-            <div style="display: flex; justify-content: center;" >
+          <mat-card-content >
+            <div style="display: flex; justify-content: center; " >
               <p>{{ review.review }}</p>
               
             </div>
-            <div style="margin-top: 30px;">
+          </mat-card-content>    
+          <mat-card-actions>
+            <div>
               <ng-image-slider [id]="review.id"  [imageSize]="{width: 350, space: 1}" 
               [autoSlide]="{interval: 3, stopOnHover: true}" [infinite]="true" [images]="imageObject.get(review.appointmentId)!" [showArrow]="false"
               (imageClick)="triggeron()" (lightboxClose)="triggeroff()" ></ng-image-slider>
             </div>
-          </mat-card-content>
-          
-          <mat-card-actions>
           </mat-card-actions>
         </mat-card>
       </div>

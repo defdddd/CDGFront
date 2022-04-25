@@ -1,4 +1,4 @@
-import { AbstractControl, AsyncValidatorFn, ValidationErrors, } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn, } from '@angular/forms';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -34,4 +34,5 @@ export class AppointmentValidator {
                 );
         }
     }
+   
 }

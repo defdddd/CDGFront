@@ -24,3 +24,10 @@
     max-width: 80%;
     margin-top: 2%;
 }
+.mat-row {
+  height: auto;
+}
+
+.mat-cell {
+  padding: 9px 9px 9px 0;
+}

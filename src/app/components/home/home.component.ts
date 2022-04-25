@@ -65,8 +65,10 @@ export class HomeComponent implements OnInit {
     this.setReviews();
   }
   back(){
-    this.ReviewPageNumber--;
-    this.setReviews();
+    if(this.ReviewPageNumber > 1){
+      this.ReviewPageNumber--;
+      this.setReviews();
+    }
   }
 
   triggeroff(){
@@ -87,12 +89,18 @@ export class HomeComponent implements OnInit {
 
   private setReviews(){
     this.review.GetReviewsPag(this.ReviewPageNumber).subscribe(data => {
-      this.Reviews = data;
-      this.Reviews.forEach(x => {
-        this.getImageAvatarfromId(x.userId);
-        this.getProfileName(x.userId);
-        this.getImagesForReview(x.appointmentId);
-      });
+      if(data.length > 0){
+        this.Reviews = data;
+        this.Reviews.forEach(x => {
+          this.getImageAvatarfromId(x.userId);
+          this.getProfileName(x.userId);
+          this.getImagesForReview(x.appointmentId);
+        });
+      }
+      else{
+        this.ReviewPageNumber = 0;
+        this.next();
+      }
     });
   }
 }

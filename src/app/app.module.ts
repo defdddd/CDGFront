@@ -39,7 +39,7 @@ import { DialogPictureComponent } from './dialogs/dialog-picture/dialog-picture.
 import { DialogReviewComponent } from './dialogs/dialog-review/dialog-review.component';
 import { DialogSlidePictureComponent } from './dialogs/dialog-slide-picture/dialog-slide-picture.component';
 import { CommandsComponent } from './components/commands/commands.component';
-import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
+import { ForgotpasswordComponent } from './dialogs/forgotpassword/forgotpassword.component';
 import { MycommandsComponent } from './components/mycommands/mycommands.component';
 import { MyreviewsComponent } from './components/myreviews/myreviews.component';
 import { PictureComponent } from './components/picture/picture.component';
