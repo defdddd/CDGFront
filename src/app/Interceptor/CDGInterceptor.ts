@@ -31,7 +31,7 @@ export class CDGInterceptor implements HttpInterceptor {
             icon: 'error',
             title: 'Oops...',
             confirmButtonColor: '#3378cc',
-            text: `Something went wrong! \n HTTP Error: ${req.url} \n ${error.error}`,
+            text: `Something went wrong! \n ${error.error}`,
           });
           return throwError(error);
         }),
